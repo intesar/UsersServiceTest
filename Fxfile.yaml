@@ -1,0 +1,45 @@
+
+---
+version: '1'
+
+# App (Project) name
+name: Users-Service-Test
+
+# App description
+description: Microservice
+
+# license
+licenses:
+  - APACHE LICENSE, VERSION 2.0
+
+# App environments
+environments:
+  - name: Stg
+    baseUrl: http://stg1.fxlabs.io/api/v1
+    # app access credentials
+    auths:
+      - name: Default
+        authType: BASIC
+        username: admin@fxlabs.io
+        password: admin123$
+  - name: Dev
+    baseUrl: http://localhost:8080/api/v1
+    # app access credentials
+    auths:
+      - name: Default
+        authType: BASIC
+        username: admin@fxlabs.io
+        password: apple123
+# Job profiles
+jobs:
+  - name: Stg
+    environment: Stg
+    tags:
+      - V1
+    regions: FxLabs/US_WEST_1
+    cron: '0 30 1 ? * *'
+  - name: Dev
+    environment: Dev
+    tags:
+      - V1
+    regions: FxLabs/US_WEST_1
